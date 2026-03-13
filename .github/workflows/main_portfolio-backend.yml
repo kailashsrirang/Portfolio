@@ -21,11 +21,12 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Remove venv before deploy
+      - name: Install dependencies into project folder
         run: |
-          rm -rf server/portfolio_server/venv
-          rm -rf server/portfolio_server/antenv
-          du -sh server/portfolio_server/
+          cd server/portfolio_server
+          rm -rf venv antenv
+          pip install -r requirements.txt --target=".python_packages/lib/site-packages"
+          du -sh .
 
       - name: Login to Azure
         uses: azure/login@v2
@@ -34,13 +35,9 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_7DAECB7AF83E40709ECA723B9C30832B }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A8F28C4C6F24415CA9620BDACE09DD5C }}
 
-      - name: Zip and deploy using Azure CLI
-        run: |
-          cd server/portfolio_server
-          zip -r ../../deploy.zip . -x "venv/*" -x "antenv/*" -x "*.pyc" -x "__pycache__/*"
-          cd ../..
-          az webapp deploy \
-            --resource-group myapp-rg \
-            --name portfolio-backend \
-            --src-path deploy.zip \
-            --type zip
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'portfolio-backend'
+          slot-name: 'Production'
+          package: server/portfolio_server
