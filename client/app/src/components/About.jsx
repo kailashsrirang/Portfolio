@@ -62,7 +62,7 @@ function About() {
                             ))}
                         </div>
 
-                        <a href="/resume.pdf" className="btn btn-accent">
+                        <a href="/resume.pdf" download="Kailash_Sri_Resume.pdf" className="btn btn-accent">
                             Download Resume
                         </a>
                     </div>

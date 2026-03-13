@@ -22,7 +22,7 @@ function Navbar() {
                             </li>
                         ))}
                         <li className="nav-item ms-lg-3 mt-3 mt-lg-0">
-                            <a className="btn btn-accent" href="/resume.pdf" target="_blank" rel="noreferrer">
+                            <a className="btn btn-accent" href="/resume.pdf" download="Kailash_Sri_Resume.pdf">
                                 Download CV
                             </a>
                         </li>
