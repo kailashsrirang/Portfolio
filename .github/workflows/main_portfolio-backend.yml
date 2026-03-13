@@ -21,11 +21,6 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
-        run: |
-          cd server/portfolio_server
-          pip install -r requirements.txt --target=".packages"
-
       - name: Login to Azure
         uses: azure/login@v2
         with:
