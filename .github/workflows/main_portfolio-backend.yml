@@ -28,6 +28,12 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_7DAECB7AF83E40709ECA723B9C30832B }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A8F28C4C6F24415CA9620BDACE09DD5C }}
 
+      - name: Remove venv before deploy
+        run: |
+          rm -rf server/portfolio_server/venv
+          rm -rf server/portfolio_server/antenv
+          du -sh server/portfolio_server/
+
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
