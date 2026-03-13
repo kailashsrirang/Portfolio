@@ -27,7 +27,7 @@ jobs:
 
       - name: Install and Build
         run: |
-          cd client
+          cd client/app
           npm install
           npm run build
 
@@ -38,7 +38,7 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PROUD_MUSHROOM_0147A2E1E }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "./client"
+          app_location: "./client/app"
           api_location: ""
           output_location: "dist"
           skip_app_build: true
