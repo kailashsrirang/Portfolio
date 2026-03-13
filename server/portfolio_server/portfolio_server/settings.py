@@ -31,10 +31,15 @@ SECRET_KEY = "django-insecure-$1g5tj9i@4s6)v_r*gg5p37b=*5k42ohgg14$p$l5kn7mr&)b$
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = [
-    'proud-mushroom-0147a2e1e.6.azurestaticapps.net/', '127.0.0.1', 'localhost']
+    'proud-mushroom-0147a2e1e.6.azurestaticapps.net', '127.0.0.1', 'localhost']
 
 if 'WEBSITE_HOSTNAME' in os.environ:
     ALLOWED_HOSTS.append(os.environ['WEBSITE_HOSTNAME'])
+
+
+# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWED_ORIGINS = ['http://localhost:5174',
+                        'https://proud-mushroom-0147a2e1e.6.azurestaticapps.net', ]
 
 
 # Application definition
@@ -69,9 +74,6 @@ REST_FRAMEWORK = {
     ]
 
 }
-
-# CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOWED_ORIGINS = ['http://localhost:5174']
 
 ROOT_URLCONF = "portfolio_server.urls"
 
