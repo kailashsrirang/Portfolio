@@ -1,0 +1,25 @@
+{% extends 'api/base.html' %}
+
+
+{% block title %}templating{% endblock %}
+{% block content %}
+<ul>
+    {% for msg in messages %}
+    <li> {{ msg.sender }} - {{ msg.email }} - {{ msg.message }} - {{ msg.priority }}</li>
+    {% endfor %}
+
+</ul>
+<h1>
+</h1>
+
+
+<form method="POST" action="{% url 'message' %}">
+    {% csrf_token %}
+    {{ form.as_p}}
+    <button type="submit">Submit</button>
+</form>
+
+
+
+
+{% endblock %}
