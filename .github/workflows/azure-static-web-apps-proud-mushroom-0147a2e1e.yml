@@ -30,7 +30,6 @@ jobs:
           cd client/app
           npm install
           npm run build
-          cp staticwebapp.config.json dist/
 
       - name: Build And Deploy
         id: builddeploy
