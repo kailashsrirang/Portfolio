@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 
+FRONTEND_URL = os.getenv("FRONTEND_URL")
+LOCAL_FRONTEND_URL = "http://localhost:5174"
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,22 +33,20 @@ SECRET_KEY = "django-insecure-$1g5tj9i@4s6)v_r*gg5p37b=*5k42ohgg14$p$l5kn7mr&)b$
 
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = [
-    'proud-mushroom-0147a2e1e.6.azurestaticapps.net', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
-if 'WEBSITE_HOSTNAME' in os.environ:
-    ALLOWED_HOSTS.append(os.environ['WEBSITE_HOSTNAME'])
+if "WEBSITE_HOSTNAME" in os.environ:
+    ALLOWED_HOSTS.append(os.environ["WEBSITE_HOSTNAME"])
 
 
 # CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5174",
-    "https://proud-mushroom-0147a2e1e.6.azurestaticapps.net",
-]
+CORS_ALLOWED_ORIGINS = [LOCAL_FRONTEND_URL]
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://proud-mushroom-0147a2e1e.6.azurestaticapps.net",
-]
+CSRF_TRUSTED_ORIGINS = []
+
+if FRONTEND_URL:
+    CORS_ALLOWED_ORIGINS.append(FRONTEND_URL)
+    CSRF_TRUSTED_ORIGINS.append(FRONTEND_URL)
 
 # Application definition
 
