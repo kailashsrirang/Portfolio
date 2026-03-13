@@ -38,9 +38,14 @@ if 'WEBSITE_HOSTNAME' in os.environ:
 
 
 # CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOWED_ORIGINS = ['http://localhost:5174',
-                        'https://proud-mushroom-0147a2e1e.6.azurestaticapps.net', ]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5174",
+    "https://proud-mushroom-0147a2e1e.6.azurestaticapps.net",
+]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://proud-mushroom-0147a2e1e.6.azurestaticapps.net",
+]
 
 # Application definition
 
